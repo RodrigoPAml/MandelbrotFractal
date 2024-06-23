@@ -17,7 +17,7 @@ Fractal below have the credits to https://www.shadertoy.com/view/tllSWj
 - Space/Z to zoom in/out
 - Q to change between fractals variants
 - Move with arrows
-- 
+  
 # Implementation
 
 The Mandelbrot set is a collection of points in the complex plane. Each point \(c\) is a complex number represented as \(c = x + yi\) (where \(x\) and \(y\) are real numbers, and \(i\) is the imaginary unit).
