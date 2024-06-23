@@ -24,7 +24,7 @@ void main()
         iterations++;
     }
 
-    if (iterations == max_iterations || iterations == 0) 
+    if (iterations == max_iterations) 
     {
         fragColor = vec4(0, 0 , 0, 1.0); 
     }
