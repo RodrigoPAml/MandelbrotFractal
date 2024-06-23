@@ -79,7 +79,7 @@
                 {
                   "name": "zoom_factor",
                   "type": 1,
-                  "value": "200.000000"
+                  "value": "100.000000"
                 }
               ],
               "mode": 0,

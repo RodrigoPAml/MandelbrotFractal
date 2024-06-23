@@ -45,7 +45,7 @@ function fractal.update()
     fractal.draw_fractal()
 end
 
-function  fractal.control()
+function fractal.control()
     local this = engine.current()
 
     local right_key = engine.input.get_key(engine.enums.keyboard_key.right)
@@ -54,34 +54,44 @@ function  fractal.control()
     local down_key = engine.input.get_key(engine.enums.keyboard_key.down)
     local z_key = engine.input.get_key(engine.enums.keyboard_key.Z)
     local space_key = engine.input.get_key(engine.enums.keyboard_key.space)
-    
-    local translate_amount = 5 - (this.zoom/40);
-    if(right_key == engine.enums.input_action.press) then 
+
+    local translate_amount = 5 - (this.zoom / 40);
+    if (right_key == engine.enums.input_action.press) then
         this.center_x = this.center_x - translate_amount
     end
 
-    if(left_key == engine.enums.input_action.press) then 
+    if (left_key == engine.enums.input_action.press) then
         this.center_x = this.center_x + translate_amount
     end
 
-    if(up_key == engine.enums.input_action.press) then 
+    if (up_key == engine.enums.input_action.press) then
         this.center_y = this.center_y - translate_amount
     end
 
-    if(down_key == engine.enums.input_action.press) then 
+    if (down_key == engine.enums.input_action.press) then
         this.center_y = this.center_y + translate_amount
     end
 
-    if(down_key == engine.enums.input_action.press) then 
+    if (down_key == engine.enums.input_action.press) then
         this.center_y = this.center_y + translate_amount
     end
 
-    if(z_key == engine.enums.input_action.press) then 
-        this.zoom = this.zoom - (this.zoom * engine.get_frametime()/this.zoom_factor)
-    end
+    if this.file_name == 'shader_top.frag' then
+        if (z_key == engine.enums.input_action.press) then
+            this.zoom = this.zoom + (engine.get_frametime() / this.zoom_factor)
+        end
 
-    if(space_key == engine.enums.input_action.press) then 
-        this.zoom = this.zoom + engine.get_frametime()/this.zoom_factor
+        if (space_key == engine.enums.input_action.press) then
+            this.zoom = this.zoom - (engine.get_frametime() / this.zoom_factor)
+        end
+    else
+        if (z_key == engine.enums.input_action.press) then
+            this.zoom = this.zoom + (this.zoom * engine.get_frametime() / this.zoom_factor)
+        end
+
+        if (space_key == engine.enums.input_action.press) then
+            this.zoom = this.zoom - (this.zoom * engine.get_frametime() / this.zoom_factor)
+        end
     end
 end
 
@@ -92,16 +102,17 @@ function fractal.draw_fractal()
     engine.shader.set_mat4(engine.cam2d.get_current(), "projection", engine.cam2d.get_matrix(engine.cam2d.get_current()))
 
     local model = engine.math.make_identity_mat4()
-    model = engine.math.translate(model, { x = this._size_x / 2 - this._size_x / 2, y = this._size_y / 2 - this._size_y / 2, z = 0 })
+    model = engine.math.translate(model,
+        { x = this._size_x / 2 - this._size_x / 2, y = this._size_y / 2 - this._size_y / 2, z = 0 })
     model = engine.math.scale(model, { x = this._size_x, y = this._size_y, z = 1 })
 
     engine.shader.set_mat4(this._shader_id, "model", model)
     engine.shader.set_vec2(this._shader_id, "resolution", { x = this._size_x, y = this._size_y })
-    engine.shader.set_vec2(this._shader_id, "center", { x = this.center_x, y = this.center_y})
+    engine.shader.set_vec2(this._shader_id, "center", { x = this.center_x, y = this.center_y })
     engine.shader.set_float(this._shader_id, "zoom", this.zoom)
     engine.shader.set_int(this._shader_id, "max_iterations", this.max_iterations)
-    
-    if this.samples then 
+
+    if this.samples then
         engine.shader.set_int(this._shader_id, "samples", this.samples)
     end
 
