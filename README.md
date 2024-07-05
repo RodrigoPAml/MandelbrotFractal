@@ -50,7 +50,7 @@ Here's the basic GLSL code that does this:
 # Executing
 
 - Box Engine is available in Engine Folders with a release and the source code is in my repository (note that versions might differ)
-- To run use start.bat or use start_editor.bat to use the engine editor and change settings better
+- To run use ```start.bat``` or use ```start_editor.bat``` to use the engine editor and change settings better
 - The complete source code of the fractal is in Assets folder
 
 ![image](https://github.com/RodrigoPAml/MandelbrotFractal/assets/41243039/0cef1d04-8c36-43b3-9019-a067cbdf1765)
