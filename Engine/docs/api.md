@@ -744,7 +744,8 @@ The argument table format
     texture_id = number, the texture id
     rotation = number, -- rotation in degrees, optional
     color = {x = number, y = number, z = number }, -- color, vec3 format, optional
-    color_weight = number, -- color weight in relation to texture, should vary between 0.0 and 1.0
+    color_weight = number, -- color weight in relation to texture, should vary between 0.0 and 1.0, optional
+    transparency = number, -- transparency multiplier, should vary between 0.0 and 1.0, optional
 }
 ```
 
@@ -1795,6 +1796,12 @@ function engine.audio.resume(id = number) end
 function engine.audio.restart(id = number) end
 ```
 
+## Stop Audio
+
+```lua
+function engine.audio.stop(id = number) end
+```
+
 ## Check if audio has finished playing
 
 ```lua
@@ -1957,6 +1964,14 @@ function engine.font.draw(id = number) end
 
 # Math Module
 
+## Random number
+
+Return a random number between 0.0 and 1.0
+
+```lua
+function engine.math.random() 
+```
+
 ## Make vec2 
 
 Return a vec2
@@ -2056,6 +2071,38 @@ Return a vec4 that is the multiplication between a mat4 and vec4
 
 ```lua
 function engine.math.multiply(mat4, vec4) 
+```
+
+## Magnitude Vec2 
+
+Return the magnitude of a vec2
+
+```lua
+function engine.math.mag_vec2(vec2) 
+```
+
+## Magnitude Vec3 
+
+Return the magnitude of a vec3
+
+```lua
+function engine.math.mag_vec3(vec3) 
+```
+
+## Normalize Vec2 
+
+Return the normalized vec2
+
+```lua
+function engine.math.normalize_vec2(vec2) 
+```
+
+## Normalize Vec3 
+
+Return the normalized vec3
+
+```lua
+function engine.math.normalize_vec3(vec3)
 ```
 
 # Object Module
